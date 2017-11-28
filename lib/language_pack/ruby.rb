@@ -106,6 +106,7 @@ WARNING
         post_bundler
         create_database_yml
         install_binaries
+        run_assets_clobber_rake_task
         run_assets_precompile_rake_task
       end
       best_practice_warnings
@@ -868,6 +869,12 @@ params = CGI.parse(uri.query || "")
 
   def yarn_not_preinstalled?
     !yarn_preinstall_bin_path
+  end
+
+  def run_assets_clobber_rake_task
+    instrument 'ruby.run_assets_clobber_rake_task' do
+      rake.task("assets:clobber")
+    end
   end
 
   def run_assets_precompile_rake_task
