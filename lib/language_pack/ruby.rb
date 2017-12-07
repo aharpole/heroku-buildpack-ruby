@@ -874,7 +874,9 @@ params = CGI.parse(uri.query || "")
   def run_assets_clobber_rake_task
     instrument 'ruby.run_assets_clobber_rake_task' do
       topic "Clobbering assets"
+      puts "Running rake assets:clobber"
       rake.task("assets:clobber").invoke(env: rake_env)
+      puts "Running rake assets:clobber......complete"
     end
   end
 
